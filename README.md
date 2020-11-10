@@ -1,2 +1,3 @@
-# FanChastic
-The project is a Django E- Commerce Website
+
+
+This is an Ecommerce Website made using Django.
