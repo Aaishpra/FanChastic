@@ -33,4 +33,3 @@ def checkout(request):
 
 def productView(request):
     return render(request, 'Cutisey/prodView.html')
-
