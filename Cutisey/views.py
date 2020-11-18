@@ -31,5 +31,6 @@ def search(request):
 def checkout(request):
     return render(request, 'Cutisey/checkout.html')
 
-def productView(request):
-    return render(request, 'Cutisey/prodView.html')
+def productView(request, myid):
+# Fetch the product using the id
+    return render(request, 'Cutisey/productView.html')
