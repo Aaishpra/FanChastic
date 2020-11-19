@@ -35,4 +35,4 @@ def productView(request, myid):
 # Fetch the product using the id
     product=Product.objects.filter(id=myid)
     print(product)
-    return render(request, 'Cutisey/productView.html', {'product':product})
+    return render(request, 'Cutisey/productView.html', {'product':product[0]})
