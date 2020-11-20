@@ -41,7 +41,7 @@ padding-right: 0;
 margin-top:17px;
 
 text-align:center;
-color:#d52e3f;
+color:#b19cd9;
 	font-weight:bold;    
 	   	font-family: 'Niconne', cursive;
 	    font-weight: 700;
@@ -53,8 +53,9 @@ color:#d52e3f;
 
 {% block body %}
 {% load static %}
+<img src="https://shaye.co.in/pub/media/promobanners/n/e/new-in-fall-winter.jpg" alt="banner" border="0" style="width: 1740px; height: 500px;">
 <div class="container">
-<h3 class="top">Our New Spring Collection </h3>
+<h3 class="top">Our New Fall Collection </h3>
 <div class="row">
   <div id="demo" class="carousel slide my-3" data-ride="carousel">
     <ul class="carousel-indicators">
@@ -92,18 +93,23 @@ color:#d52e3f;
       </div> 
       </div>
 
-
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
 
     </div>
   </div>
   <!-- left and right controls for the slide -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+  <!-- <a class="carousel-control-prev" href="#demo" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </a>
   <a class="carousel-control-next" href="#demo" data-slide="next">
     <span class="carousel-control-next-icon"></span>
-  </a>
-
+  </a> -->
+  
   {% endblock %}
   {% block js %}
   <script>
