@@ -36,3 +36,13 @@ def productView(request, myid):
     product=Product.objects.filter(id=myid)
     print(product)
     return render(request, 'Cutisey/productView.html', {'product':product[0]})
+
+def contact(request):
+    if request.method=="POST":
+        print(request)
+        name = request.POST.get('name','')
+        email = request.POST.get('email','')
+        phone = request.POST.get('phone','')
+        desc = request.POST.get('desc','')
+        print(name, email, phone, desc)
+    return render(request, 'Cutisey/contact.html')
