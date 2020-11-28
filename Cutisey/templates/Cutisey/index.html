@@ -53,7 +53,8 @@ color:#b19cd9;
 
 {% block body %}
 {% load static %}
-<img src="https://shaye.co.in/pub/media/promobanners/n/e/new-in-fall-winter.jpg" alt="banner" border="0" style="width: 1282.5px; height: 500px;">
+<img src="https://shaye.co.in/pub/media/promobanners/n/e/new_in_1.jpg" alt="banner" style="width: 1282.5px; height: 380px;">
+
 <div class="container">
 <h3 class="top">Our New Fall Collection </h3>
 <div class="row">
@@ -73,10 +74,10 @@ color:#b19cd9;
  
      {% for i in product %}
         <div class="col-xs-3 col-sm-3 col-md-3">
-          <div class="card" style="width: 18rem;">
+          <div class="card align-items-center" style="width: 18rem;">
             <img src='/media/{{i.image}}' class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{i.product_name}}</h5>
+              <h5 class="card-title" id="nampr{{i.id}}">{{i.product_name}}</h5>
               <p class="card-text">{{i.desc}}</p>
               <span id="divpr{{i.id}}" class="divpr">
               <button id="pr{{i.id}}" class="btn btn-dark cart">I Like it!</button>
@@ -103,7 +104,26 @@ color:#b19cd9;
       </a>
 
     </div>
-  </div>
+  </div></div>
+  <img src="https://shaye.co.in/pub/media/promobanners/n/e/new-in-fall-winter.jpg" alt="banner" border="25px" style="width: 1282.5px; height: 500px;">
+  <h3 class="top">On Sale Currently </h3>
+  {% for i in product %}
+        <div class="col-xs-3 col-sm-3 col-md-3 my-3">
+          <div class="card align-items-center" style="width: 18rem;">
+            <img src='/media/{{i.image}}' class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title" id="nampr{{i.id}}">{{i.product_name}}</h5>
+              <p class="card-text">{{i.desc}}</p>
+              <span id="divpr{{i.id}}" class="divpr">
+              <button id="pr{{i.id}}" class="btn btn-dark cart">I Like it!</button>
+            </span>
+              <a href="/Cutisey/products/{{i.id}}"> <button id="qv{{i.id}}" class="btn btn-dark cart">Quick view</button></a>
+            </div>
+          </div>
+          </div>
+          {% endfor %}
+         
+        </div>
   <!-- left and right controls for the slide -->
   <!-- <a class="carousel-control-prev" href="#demo" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
@@ -115,7 +135,7 @@ color:#b19cd9;
   {% endblock %}
   {% block js %}
   <script>
-    console.log('working')
+   // value of items from localstorage
     if (localStorage.getItem('cart') == null) {
       var cart = {};
     }
@@ -124,9 +144,8 @@ color:#b19cd9;
       document.getElementById('cart').innerHTML = Object.keys(cart).length;
     }
     //jQuery starts here //
+    //add items on clicking
     $('.cart').click(function () {
-
-      console.log('clicked');
       var idstr = this.id.toString();
       console.log(idstr);
       if (cart[idstr] != undefined) {
@@ -139,7 +158,7 @@ color:#b19cd9;
       
     });
 
-   
+   // add popover to cart
     $('#popcart').popover();
     document.getElementById("popcart").setAttribute('data-content', '<h5>Your items in Shopping Cart</h5>');
     
@@ -151,20 +170,31 @@ color:#b19cd9;
     document.getElementById('cart').innerHTML = Object.keys(cart).length;
     console.log(cart);
 }
+function updatePopover(cart)
+{
+  
+    var popStr = "";
+    popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div class='mx-2 my-2'>";
+    var i = 1;
+    for (var item in cart){
+        popStr = popStr + "<b>" + i + "</b>. ";
+        popStr = popStr + document.getElementById('name' + item).innerHTML.slice(0, 19) + "... Qty: " + cart[item] + '<br>';
+        i = i+1;
+    }
+    popStr = popStr + "</div>" 
+    document.getElementById('popcart').setAttribute('data-content', popStr);
+    $('#popcart').popover('show');
+}
 // If plus or minus button is clicked, change the cart as well as the display value
-$('.divpr').on("click", "button.minus", function() {
-    //a = this.id.slice(7, );
-    cart['pr' + a] = cart['pr' + a] - 1;
-    cart['pr' + a] = Math.max(0, cart['pr' + a]);
-    document.getElementById('valpr' + a).innerHTML = cart['pr' + a];
+function clearCart() {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart) {
+        document.getElementById('div' + item).innerHTML = '<button id="' + item + '" class="btn btn-primary cart">Add To Cart</button>'
+    }
+    localStorage.clear();
+    cart = {};
     updateCart(cart);
-});
-$('.divpr').on("click", "button.plus", function() {
-   // a = this.id.slice(6, );
-    cart['pr' + a] = cart['pr' + a] + 1;
-    document.getElementById('valpr' + a).innerHTML = cart['pr' + a];
-    updateCart(cart);
-});
+}
 
   </script>
   {% endblock %}
