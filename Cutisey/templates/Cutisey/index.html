@@ -231,5 +231,20 @@ Made with <span class="heart">❤</span> by Shipra</div>
     document.getElementById('valpr' + a).innerHTML = cart['pr' + a];
     updateCart(cart);
   });
+  // If the add to cart button is clicked, add/increment the item
+//$('.cart').click(function() {
+$('.divpr').on('click', 'button.cart', function() {
+    var idstr = this.id.toString();
+    if (cart[idstr] != undefined) {
+        qty = cart[idstr][0] + 1;
+        
+    } else {
+        qty = 1;
+        name = document.getElementById('name'+idstr).innerHTML
+        cart[idstr] = [qty, name];
+
+    }
+    updateCart(cart);
+});
 </script>
 {% endblock %}
