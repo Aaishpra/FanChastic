@@ -1,15 +1,23 @@
 {% extends 'Cutisey/basic.html' %}
-{% block title %} My Awesome Cart Tracker{% endblock %}
+{% block title %} Cutisey - Tracker{% endblock %}
+{% block css %}.container{
+  margin-top:6rem;
+}
+body {
+  background: url('https://s-media-cache-ak0.pinimg.com/736x/f4/ac/6a/f4ac6aac3afb587f6cae04155656fca3.jpg');
+  }
+  
+{% endblock %}
 {% block body %}
 <div class="container">
     <div class="col my-4">
-        <h2> Enter Your Order Id and Email address to track your order </h2>4
+        <h2> Enter Your Order Id and Email address to track your order </h2>
 
            <form method="post" action="/Cutisey/checkout/">{% csrf_token %}
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputname">Order Id</label>
-                    <input type="text" class="form-control" id="orderId" name="orderId" placeholder="Orer Id">
+                    <input type="text" class="form-control" id="orderId" name="orderId" placeholder="Order Id">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Email</label>
@@ -19,7 +27,8 @@
             </div>
     </div>
     <div class="col my-4">
-        <h2>Your Order Status :Enter Your id and email to find out.</h2>
+        <h3>Your Order Status</h3>
+        <p>Enter Your Order id and email to find out about your order!</p>
         <div class="my-4">
             <ul class="list-group" id="items">
             </ul>
