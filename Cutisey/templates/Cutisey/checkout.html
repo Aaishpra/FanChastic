@@ -8,15 +8,9 @@
 {% endblock %}
 {% block body %}
 <div class="container">
+   
     <div class="col my-4">
-        <h2>Step 1 - Cutisey Express Checkout - Review Your Cart Items</h2>
-        <div class="my-4">
-            <ul class="list-group" id="items">
-            </ul>
-        </div>
-    </div>
-    <div class="col my-4">
-        <h2>Step 2 - Enter Address & Other Details:</h2>
+        <h2>Please Enter Address & Other Details so tha we can Deliever:</h2>
         <form method="post" action="/Cutisey/checkout/">{% csrf_token %}
             <input type="hidden" name="itemsJson" id="itemsJson">
             <div class="form-row">
@@ -106,7 +100,7 @@ $('#itemsJson').val(JSON.stringify(cart));
 {% if thank %}
 alert('Thanks for ordering with us. Your order is is {{id}}. Use it to track your order using our order tracker');
 localStorage.clear();
-document.location = "/shop";
+document.location = "/Cutisey";
 {% endif %}
 $('#amount').val($('#totalPrice').html()
 </script>
