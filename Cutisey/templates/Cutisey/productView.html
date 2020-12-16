@@ -1,191 +1,61 @@
 {% extends 'Cutisey/basic.html' %}
-{% block title %} {{product.product_name}}-Cutisey {% endblock %}
-
+{% block title%} {{product.product_name}} - My Awesome Cart{% endblock %}
 {% block css %}
-h1 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.price {
-  margin-bottom: 10px;
-}
-
-.wrapper {
-  margin: 0 auto;
-  width: 860px;
-}
-
-.column {
-  margin: 0 auto;
-  max-width: 900px;
-}
-
-.details {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  float: right;
-}
-
-.thumbnail-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  
-}
-
-.price {
-  font-size: 20px;
-  color: #777474;
-}
-
-.wishlist-container {
-  padding-left: 0;
-}
-
-#header {
-  width: 100%;
-  text-align: center;
-  background: white;
-  padding: 5px;
-  /*box-shadow: 0 10px 17px 0px #c0c0c0;*/
-  box-shadow: 0 5px 10px 0px #dbd7d7;
-}
-#header img {
-  max-width: 30px;
-}
-
-.columns {
-  margin-top: 30px;
-  
-}
-.grid-left {
-  grid-area: left;
-}
-.button {
-  width: 100%;
-  border-radius: 0;
-}
-
-.select, select {
-  width: 100%;
-  border-radius: 0 !important;
-}
-
-#wishlist-container {
-  padding-left: 0;
-}
-
-#buy-container {
-  padding-right: 0;
+body {
+    background: url('https://s-media-cache-ak0.pinimg.com/736x/f4/ac/6a/f4ac6aac3afb587f6cae04155656fca3.jpg');
+    }
+    
+.container{
+    margin-top:6rem;
 }
 
 .small-text {
-  font-size: 14px;
-}
-
-.small-text span {
-  font-weight: bold;
-}
-
-.buy-button {
-  background: #ff6900;
-  color: white;
-  border: none;
-}
-
-.buy-button:hover, .buy-button:active, .buy-button:focus {
-  color: white;
-  opacity: 0.9;
-}
-
-a {
-  color: #ff6900;
-}
-a:hover {
-  color: #ff6900;
-  opacity: 0.8;
-}
-
-@media only screen and (max-width: 769px) {
-
-  #wishlist-container, #buy-container {
-    padding: 0 0 15px 0;
+    margin-top: 2rem;
+    font-size: 14px;
   }
+  
+.small-text span {
+    font-weight: bold;
+  }
+.price {
+    margin-bottom: 10px;
+    font-color: grey;
 }
+  
 {% endblock %}
 {% block body %}
-
-     <div id="header">
-        <img src="https://awik.io/demo/webshop-zoom/star_logo.png">
-      </div>
-    
-      
-      
-      
-      <div class="columns">
-         <div class="column">
-            <div class="thumbnail-container">
-              <img class="drift-demo-trigger" data-zoom="https://awik.io/demo/webshop-zoom/shoe-large.jpg" src="/media/{{product.image}}">
-            </div>
-        </div> 
+<div class="container">
+    <div class="row">
+    <div class="col-md-4">
+    <div class="row">
+        <img src="/media/{{product.image}}" width="300px" height="400px">
+    </div>
         
-        <div class="grid left">
-          <div class="column">
-          <div class="details">
-            <h1>{{product.product_name}}</h1>
-            <p class="price">$ {{product.price}}</p>
-            <p class="description">{{product.desc}}</p>
-      
-      
-      
-            <div class="columns">
-      
-              <div class="column" id="wishlist-container">
-      
-                <button class="button">
-                  <span class="icon is-small">
-                      <i class="fas fa-heart"></i>
-                    </span>
-                    <span>ADD TO WISHLIST</span>
-                </button>
-      
-              </div>
-              
-              <div class="column" id="buy-container">
-      
-                <button class="button buy-button">
-                  <span class="icon is-small">
-                      <i class="fas fa-shopping-bag"></i>
-                    </span>
-                    <span>ADD TO BAG</span>
-                </button>
-      
-              </div>
-      
-            </div>
-      
+
+    </div>
+
+    <div class="col-md-8">
+        <h2>{{product.product_name}}</h2>
+        <p class="price"><b> $ {{product.price}} </b></p>
+        <p>{{product.desc}}</p>
+        
+     
+        <button class="btn btn-dark">Buy Now</button>
+            <button class="btn btn-dark">Add To Cart</button>
             <p class="small-text"><span>Standard delivery</span> 2-5 working days</p>
             <p class="small-text"><span>Next day delivery</span> order before 2pm ($5.79)</p>
       
-          </div>
-        </div>
-      </div>
-      </div>
-      
-    
 
- {% endblock %}
- {% block js %}
- <script>
-new Drift(document.querySelector('.drift-demo-trigger'), {
-  paneContainer: document.querySelector('.details'),
-  inlinePane: 769,
-  inlineOffsetY: -85,
-  containInline: true,
-  hoverBoundingBox: true
-});
- </script>
- {% endblock %}
+    </div>
+    </div>
+
+
+</div>
+
+
+
+
+{% endblock %}
+
+
+

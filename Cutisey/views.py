@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Product,Contact,Orders,OrderUpdate
+from .models import Product, Contact, Orders, OrderUpdate
 from math import ceil
 
 # Create your views here.
@@ -9,10 +9,11 @@ from math import ceil
 def index(request):
     products = Product.objects.all()
     print(products)
-    n=len(products)
+    n = len(products)
     nSlides = n//4 + ceil((n/4)+(n//4))
-    params = {'no_of_slides': nSlides,'range':range(1,nSlides),'product': products}
-    return render(request, 'Cutisey/index.html',params)
+    params = {'no_of_slides': nSlides, 'range': range(
+        1, nSlides), 'product': products}
+    return render(request, 'Cutisey/index.html', params)
 
 
 def about(request):
@@ -20,11 +21,38 @@ def about(request):
 
 
 def contact(request):
-    return render(request, 'Cutisey/contact.html')
+    thank=False
+    if request.method=="POST":
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        phone = request.POST.get('phone', '')
+        desc = request.POST.get('desc', '')
+        contact = Contact(name=name, email=email, phone=phone, desc=desc)
+        contact.save()
+        thank=True
+    return render(request, 'Cutisey/contact.html', {'thank':thank})
+
 
 def tracker(request):
+    if request.method=="POST":
+        orderId = request.POST.get('orderId', '')
+        email = request.POST.get('email', '')
+        try:
+            order = Orders.objects.filter(order_id=orderId, email=email)
+            if len(order)>0:
+                update = OrderUpdate.objects.filter(order_id=orderId)
+                updates = []
+                for item in update:
+                    updates.append({'text': item.update_desc, 'time': item.timestamp})
+                    response = json.dumps([updates, order[0].items_json], default=str)
+                return HttpResponse(response)
+            else:
+                return HttpResponse('{}')
+        except Exception as e:
+            return HttpResponse('{}')
+
     return render(request, 'Cutisey/tracker.html')
-    
+   
 def search(request):
     return render(request, 'Cutisey/search.html')
 
