@@ -1,6 +1,6 @@
 # FanChastic
 
-Cutisey is an Shopping website for woemen dresses made using Django
+Cutisey is an Shopping website for women dresses made using Django
 
 ![Alt Text](https://media.giphy.com/media/5ZO0sH5F2ou3RQ9oYh/giphy.gif)
 
