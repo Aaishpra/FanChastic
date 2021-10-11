@@ -12,7 +12,7 @@ To start using the application on your local device do following.
 
   - Clone the repository
 
-   
+
   -  Inside the cloned directory, run the following commands:
 
         ```  pip3 install -r req.txt ```
